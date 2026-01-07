@@ -38,3 +38,9 @@ This project uses various agents to assist with development, deployment, and mai
   - `--color-fg`: Foreground/text color (currently `darkkhaki`)
 - Keep styles inline within the `<style>` tag in `index.html`
 - Always prefer **modern** CSS features and practices.
+
+### Documentation
+
+- All markdown documentation (e.g., `README.md`, `AGENTS.md`, `ROADMAP.md`) should always align with the current state of the repository
+- When making changes to the codebase, update relevant documentation to reflect those changes
+- Keep documentation accurate and up-to-date with the actual implementation
