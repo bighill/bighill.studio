@@ -9,37 +9,22 @@
   </head>
   <body>
     <style>
-      html,
-      body,
-      main {
+      :root {
+        --color-bg: rgb(0, 0, 0, 1);
+        --color-fg: rgb(255, 255, 255, 0.7);
+      }
+      * {
         margin: 0;
-        height: 100%;
+        padding: 0;
       }
       body {
-        background: black;
-        color: white;
+        background: var(--color-bg);
+        color: var(--color-fg);
         font-family: sans-serif;
       }
       main {
         display: flex;
         justify-content: center;
-        align-items: center;
-        opacity: 0.3;
-        animation: fadeyfade 11s infinite;
-      }
-      span {
-        color: darkkhaki;
-      }
-      @keyframes fadeyfade {
-        from {
-          opacity: 0.1;
-        }
-        50% {
-          opacity: 0.9;
-        }
-        to {
-          opacity: 0.1;
-        }
       }
     </style>
     <main>
