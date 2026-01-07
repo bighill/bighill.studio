@@ -2,6 +2,8 @@
 
 This is the repository for the Bighill Studio website. It is a static site built with HTML, CSS, and JavaScript. It is hosted on GitHub Pages.
 
+GitHub Pages URL: `https://bighill.github.io/bighill.studio`
+
 ## Development
 
 ```bash
