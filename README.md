@@ -1,8 +1,9 @@
 # Bighill Studio
 
-This is the repository for the Bighill Studio website. It is a static site built with HTML, CSS, and JavaScript. It is hosted on GitHub Pages.
+This is the source code for the Bighill Studio website. The website will be a landing page for software engineer consulting services.
 
-GitHub Pages URL: `https://bighill.github.io/bighill.studio`
+- https://bighill.studio
+- https://bighill.github.io/bighill.studio
 
 ## Development
 
