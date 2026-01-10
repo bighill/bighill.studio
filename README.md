@@ -8,8 +8,7 @@ This is the source code for the Bighill Studio website. The website will be a la
 ## Development
 
 ```bash
-cd <this directory>
-npx serve
+./run-dev.sh
 ```
 
 ## Production
