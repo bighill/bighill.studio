@@ -1,6 +1,6 @@
 # Roadmap
 
-- [ ] Content
 - [ ] Design
-- [ ] Contact form handler
+- [x] Contact form handler
+- [x] Content
 - [x] Init Github pages hosting w/ custom domain
