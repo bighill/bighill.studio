@@ -66,11 +66,9 @@ wrangler secret put RESEND_API_KEY
 
 # Set the "from" email address (must be verified in Resend)
 wrangler secret put FROM_EMAIL
-# Example: contact@yourdomain.com
 
 # Set the "to" email address (where you want to receive messages)
 wrangler secret put TO_EMAIL
-# Example: alex@bighill.studio
 ```
 
 ### 5. Deploy the Worker
@@ -111,7 +109,15 @@ wrangler dev
 
 This will start a local server. Update the `WORKER_URL` in `index.html` to `http://localhost:8787` for local testing.
 
-2. Test the deployed worker:
+2. Use the test script:
+
+```bash
+./test-worker.sh
+```
+
+This will send a test request to the local worker (make sure `wrangler dev` is running).
+
+3. Test the deployed worker manually:
 
 ```bash
 curl -X POST https://contact-form.your-subdomain.workers.dev \

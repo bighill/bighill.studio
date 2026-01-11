@@ -24,9 +24,10 @@ This project uses various agents to assist with development, deployment, and mai
 
 - This is a minimal static site with a single HTML file
 - CSS is embedded inline within `index.html`
-- No build process or external dependencies required
+- No build process or external dependencies required for the main site
 - Assets (like `hash-favicon.png`) are referenced from the root
 - All file paths must be relative (e.g., `./hash-favicon.png`). Absolute file paths can break in GitHub Pages.
+- The `workers/` directory contains a Cloudflare Worker for handling contact form submissions (see `workers/README.md` for details)
 
 ## Styling Conventions
 
