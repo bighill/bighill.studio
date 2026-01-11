@@ -1,9 +1,6 @@
 # Bighill Studio
 
-This is the source code for the Bighill Studio website. The website will be a landing page for software engineer consulting services.
-
-- https://bighill.studio
-- https://bighill.github.io/bighill.studio
+This is the source code for the [Bighill Studio](https://bighill.studio) website.
 
 ## Development
 
