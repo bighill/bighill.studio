@@ -62,6 +62,23 @@ export default {
         );
       }
 
+      // Validate environment variables
+      if (!env.RESEND_API_KEY || !env.FROM_EMAIL || !env.TO_EMAIL) {
+        return new Response(
+          JSON.stringify({
+            error: "Server configuration error",
+            details: "Missing required environment variables",
+          }),
+          {
+            status: 500,
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
+
       // Send email via Resend
       const resendResponse = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -70,24 +87,36 @@ export default {
           Authorization: `Bearer ${env.RESEND_API_KEY}`,
         },
         body: JSON.stringify({
-          from: env.FROM_EMAIL || "onboarding@resend.dev",
-          to: env.TO_EMAIL || "contact@bighill.studio",
+          from: env.FROM_EMAIL,
+          to: env.TO_EMAIL,
           reply_to: email,
           subject: `Contact Form: ${email}`,
-          text: `Email: ${email}\n\nMessage:\n${message}`,
+          text: `${email}\n\n${message}\n\nSent from https://bighill.studio`,
         }),
       });
 
       if (!resendResponse.ok) {
-        const errorData = await resendResponse.json();
-        console.error("Resend API error:", errorData);
-        return new Response(JSON.stringify({ error: "Failed to send email" }), {
-          status: 500,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        });
+        let errorData;
+        try {
+          errorData = await resendResponse.json();
+        } catch (e) {
+          errorData = {
+            message: (await resendResponse.text()) || "Unknown error",
+          };
+        }
+        return new Response(
+          JSON.stringify({
+            error: "Failed to send email",
+            details: errorData.message || errorData.error || "Unknown error",
+          }),
+          {
+            status: 500,
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
+          }
+        );
       }
 
       // Success response
@@ -102,7 +131,6 @@ export default {
         }
       );
     } catch (error) {
-      console.error("Error processing request:", error);
       return new Response(JSON.stringify({ error: "Internal server error" }), {
         status: 500,
         headers: {

@@ -1,8 +1,8 @@
 # Roadmap
 
-- [ ] Contact form handler
-  - [ ] cloudflare worker
-  - [ ] resend email service
 - [ ] Design
+- [x] Contact form handler
+  - [x] cloudflare worker
+  - [x] resend email service
 - [x] Content
 - [x] Init Github pages hosting w/ custom domain
