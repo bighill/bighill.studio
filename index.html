@@ -239,6 +239,7 @@
           <input
             type="email"
             id="email"
+            data-email
             name="email"
             placeholder="Email"
             required
@@ -249,6 +250,7 @@
           <label for="message">Message</label>
           <textarea
             id="message"
+            data-message
             name="message"
             placeholder="Message"
             required
@@ -258,7 +260,7 @@
           ></textarea>
           <button type="submit" aria-label="Send message">Send</button>
           <div
-            id="form-message"
+            data-form-message
             class="form-message"
             role="status"
             aria-live="polite"
@@ -272,7 +274,7 @@
     <script>
       (function () {
         const form = document.querySelector("form");
-        const formMessage = document.getElementById("form-message");
+        const formMessage = document.querySelector("[data-form-message]");
         const emailInput = document.getElementById("email");
         const messageInput = document.getElementById("message");
         const submitButton = form.querySelector('button[type="submit"]');
@@ -284,8 +286,6 @@
           formMessage.classList.remove("show", "success", "error");
           formMessage.setAttribute("role", "status");
           formMessage.setAttribute("aria-live", "polite");
-          emailInput.removeAttribute("aria-describedby");
-          messageInput.removeAttribute("aria-describedby");
 
           submitButton.disabled = true;
           const originalText = submitButton.textContent;
@@ -311,8 +311,6 @@
               formMessage.classList.add("show", "success");
               formMessage.setAttribute("role", "status");
               formMessage.setAttribute("aria-live", "polite");
-              emailInput.removeAttribute("aria-describedby");
-              messageInput.removeAttribute("aria-describedby");
               form.reset();
             } else {
               formMessage.textContent =
@@ -320,8 +318,6 @@
               formMessage.classList.add("show", "error");
               formMessage.setAttribute("role", "alert");
               formMessage.setAttribute("aria-live", "assertive");
-              emailInput.setAttribute("aria-describedby", "form-message");
-              messageInput.setAttribute("aria-describedby", "form-message");
             }
           } catch (error) {
             formMessage.textContent =
@@ -329,8 +325,6 @@
             formMessage.classList.add("show", "error");
             formMessage.setAttribute("role", "alert");
             formMessage.setAttribute("aria-live", "assertive");
-            emailInput.setAttribute("aria-describedby", "form-message");
-            messageInput.setAttribute("aria-describedby", "form-message");
           } finally {
             submitButton.disabled = false;
             submitButton.textContent = originalText;
