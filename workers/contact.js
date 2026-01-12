@@ -122,7 +122,6 @@ export default {
         return new Response(
           JSON.stringify({
             error: "Server configuration error",
-            details: "Missing required environment variables",
           }),
           {
             status: 500,
@@ -156,14 +155,11 @@ export default {
         try {
           errorData = await resendResponse.json();
         } catch (e) {
-          errorData = {
-            message: (await resendResponse.text()) || "Unknown error",
-          };
+          errorData = { message: await resendResponse.text() };
         }
         return new Response(
           JSON.stringify({
             error: "Failed to send email",
-            details: errorData.message || errorData.error || "Unknown error",
           }),
           {
             status: 500,
