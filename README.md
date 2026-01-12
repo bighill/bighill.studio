@@ -2,12 +2,6 @@
 
 This is the source code for the [Bighill Studio](https://bighill.studio) website.
 
-## Features
-
-- **Glassmorphism Design**: Modern glassmorphic UI with backdrop blur effects
-- **Gradient Background**: Beautiful blue-to-purple gradient background
-- **Contact Form**: Integrated contact form with Cloudflare Worker backend
-
 ## Development
 
 ```bash

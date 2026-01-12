@@ -4,15 +4,16 @@ This directory contains the Cloudflare Worker that handles contact form submissi
 
 ## Prerequisites
 
-1. **Cloudflare Account** (free tier)
+1. **Cloudflare Account**
 
    - Sign up at https://cloudflare.com
    - Free tier includes 100,000 requests/day
 
-2. **Resend Account** (free tier)
+2. **Resend Account**
+
    - Sign up at https://resend.com
    - Free tier includes 100 emails/day
-   - Get your API key from the dashboard
+   - Get API key from the dashboard
 
 ## Deployment Steps
 
@@ -62,7 +63,6 @@ Set the Resend API key and email addresses as secrets:
 ```bash
 # Set Resend API key
 wrangler secret put RESEND_API_KEY
-# When prompted, paste your Resend API key
 
 # Set the "from" email address (must be verified in Resend)
 wrangler secret put FROM_EMAIL
@@ -109,15 +109,7 @@ wrangler dev
 
 This will start a local server. Update the `WORKER_URL` in `index.html` to `http://localhost:8787` for local testing.
 
-2. Use the test script:
-
-```bash
-./test-worker.sh
-```
-
-This will send a test request to the local worker (make sure `wrangler dev` is running).
-
-3. Test the deployed worker manually:
+2. Test the deployed worker manually:
 
 ```bash
 curl -X POST https://contact-form.your-subdomain.workers.dev \
@@ -130,9 +122,8 @@ curl -X POST https://contact-form.your-subdomain.workers.dev \
 1. **Verify your domain** (recommended):
 
    - Go to Resend dashboard → Domains
-   - Add your domain (e.g., `bighill.studio`)
+   - Add your domain
    - Add the DNS records provided by Resend to your domain's DNS settings
-   - Once verified, you can use emails like `contact@bighill.studio`
 
 2. **Or use Resend's test domain** (for quick testing):
    - You can use `onboarding@resend.dev` as the FROM_EMAIL
