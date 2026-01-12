@@ -35,6 +35,7 @@ This document describes the Bighill Studio project to help agents with developme
 - Keep styles inline within the `<style>` tag in `index.html`
 - Always prefer vanilla (native) CSS features and practices over javascript
 - Any feature request that cannot be solved with vanilla CSS/HTML, should use vanilla JS
+- Use responsive design with CSS media queries for mobile-friendly layouts (e.g., `@media (min-width: 500px)`)
 
 ## Security Best Practices
 
