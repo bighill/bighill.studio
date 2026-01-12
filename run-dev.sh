@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd "$(dirname "$0")"
-npx serve
+npx live-server --port=8181
