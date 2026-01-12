@@ -8,28 +8,384 @@
   </head>
   <body>
     <style>
-      :root {
-        --color-bg: black;
-        --color-fg: darkkhaki;
-      }
       * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
       }
+
+      :root {
+        --color-fg: #ffffff;
+        --color-glass: rgba(255, 255, 255, 0.1);
+        --color-glass-border: rgba(255, 255, 255, 0.2);
+        --color-glass-bg-light: rgba(255, 255, 255, 0.1);
+        --color-glass-bg-dark: rgba(255, 255, 255, 0.05);
+        --color-bg-gradient-start: #667eea;
+        --color-bg-gradient-mid: #764ba2;
+        --color-bg-gradient-end: #5a4fcf;
+      }
+
+      html,
       body {
-        background: var(--color-bg);
+        background: linear-gradient(
+          135deg,
+          var(--color-bg-gradient-start) 0%,
+          var(--color-bg-gradient-mid) 50%,
+          var(--color-bg-gradient-end) 100%
+        );
+        background-attachment: fixed;
         color: var(--color-fg);
-        font-family: sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
       }
+
+      body {
+        padding: 3rem;
+      }
+
       main {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+        flex-direction: column;
+        gap: 2rem;
+
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 3rem;
+
+        background: var(--color-glass);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--color-glass-border);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+      }
+
+      aside {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-family: "Courier New", Courier, monospace;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      p {
+        font-family: "Courier New", Courier, monospace;
+        margin-bottom: 0.5rem;
+        list-style: none;
+        opacity: 0.9;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        padding-left: 0;
+        list-style: none;
+      }
+
+      li {
+        position: relative;
+        padding: 0.75rem 1rem;
+        padding-left: 2.5rem;
+        background: var(--color-glass-bg-dark);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid var(--color-glass-border);
+        border-radius: 10px;
+        transition: all 0.3s;
+        color: rgba(255, 255, 255, 0.9);
+
+        opacity: 0;
+        transform: translateX(40px);
+        animation: fadeSlideIn 0.3s ease-in-out forwards;
+
+        &::before {
+          content: "○";
+          position: absolute;
+          left: 1rem;
+          color: rgba(255, 255, 255, 0.6);
+        }
+      }
+
+      li:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      li:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      li:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      li:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      li:nth-child(5) {
+        animation-delay: 0.5s;
+      }
+      li:nth-child(6) {
+        animation-delay: 0.6s;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      form > * {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeSlideIn 0.5s ease-out forwards;
+      }
+
+      form > *:nth-child(1) {
+        animation-delay: 0.6s;
+      }
+      form > *:nth-child(2) {
+        animation-delay: 0.7s;
+      }
+      form > *:nth-child(3) {
+        animation-delay: 0.8s;
+      }
+      form > *:nth-child(4) {
+        animation-delay: 0.9s;
+      }
+      form > *:nth-child(5) {
+        animation-delay: 1s;
+      }
+      form > *:nth-child(6) {
+        animation-delay: 1.1s;
+      }
+      form > *:nth-child(7) {
+        animation-delay: 1.2s;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 1rem;
+        border: 1px solid var(--color-glass-border);
+        border-radius: 12px;
+        font-size: 1rem;
+        font-family: inherit;
+        color: var(--color-fg);
+        background-color: var(--color-glass-bg-light);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: all 0.3s;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      input::placeholder,
+      textarea::placeholder {
+        opacity: 0.85;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: rgba(255, 255, 255, 0.4);
+        background-color: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        padding: 1rem 2.5rem;
+        background: var(--color-glass-bg-light);
+        color: white;
+        border: 1px solid var(--color-glass-border);
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        &:hover:not(:disabled) {
+          background: rgba(255, 255, 255, 0.3);
+          border-color: rgba(255, 255, 255, 0.4);
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        &:active:not(:disabled) {
+          transform: translateY(0);
+        }
+      }
+
+      label {
+        position: absolute;
+        left: -9999px;
+      }
+
+      .form-message {
+        display: none;
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid;
+
+        &.show {
+          display: block;
+        }
+
+        &.success {
+          background: rgba(100, 200, 255, 0.2);
+          color: #b3e5fc;
+          border-color: rgba(100, 200, 255, 0.4);
+        }
+
+        &.error {
+          background: rgba(244, 67, 54, 0.2);
+          color: #ffcdd2;
+          border-color: rgba(244, 67, 54, 0.4);
+        }
+      }
+
+      @keyframes fadeSlideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0) translateY(0);
+        }
       }
     </style>
+
+    <aside>Bighill Studio</aside>
+
     <main>
-      <h1>Bighill Studio</h1>
+      <h1>Alex Bighill</h1>
+
+      <div>
+        <p>Full-stack software engineer</p>
+        <p>15+ years building production systems</p>
+      </div>
+
+      <ul>
+        <li>Full-stack feature development</li>
+        <li>AI integration</li>
+        <li>System migrations</li>
+        <li>Bug fixes and maintenance</li>
+        <li>Code reviews and improvements</li>
+        <li>Long-term strategic planning</li>
+      </ul>
+
+      <p>Contact</p>
+
+      <form>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          data-email
+          name="email"
+          placeholder="Email"
+          required
+          aria-required="true"
+          aria-label="Email address"
+          autocomplete="email"
+        />
+        <label for="message">Message</label>
+        <textarea
+          id="message"
+          data-message
+          name="message"
+          placeholder="Message"
+          required
+          aria-required="true"
+          aria-label="Message"
+          autocomplete="off"
+        ></textarea>
+        <button type="submit" aria-label="Send message">Send</button>
+        <div
+          data-form-message
+          class="form-message"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          aria-relevant="text"
+        ></div>
+      </form>
     </main>
+
+    <script>
+      (function () {
+        const form = document.querySelector("form");
+        const formMessage = document.querySelector("[data-form-message]");
+        const submitButton = form.querySelector('button[type="submit"]');
+        const WORKER_URL = "https://contact-form.bighill.workers.dev";
+
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          formMessage.classList.remove("show", "success", "error");
+          formMessage.setAttribute("role", "status");
+          formMessage.setAttribute("aria-live", "polite");
+
+          submitButton.disabled = true;
+          const originalText = submitButton.textContent;
+          submitButton.textContent = "Sending...";
+
+          try {
+            const formData = new FormData(form);
+            const email = formData.get("email");
+            const message = formData.get("message");
+
+            const response = await fetch(WORKER_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email, message }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+              formMessage.textContent = "Message sent successfully!";
+              formMessage.classList.add("show", "success");
+              formMessage.setAttribute("role", "status");
+              formMessage.setAttribute("aria-live", "polite");
+              form.reset();
+            } else {
+              formMessage.textContent =
+                data.error || "Failed to send message. Please try again.";
+              formMessage.classList.add("show", "error");
+              formMessage.setAttribute("role", "alert");
+              formMessage.setAttribute("aria-live", "assertive");
+            }
+          } catch (error) {
+            formMessage.textContent =
+              "Failed to send message. Please check your connection and try again.";
+            formMessage.classList.add("show", "error");
+            formMessage.setAttribute("role", "alert");
+            formMessage.setAttribute("aria-live", "assertive");
+          } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
