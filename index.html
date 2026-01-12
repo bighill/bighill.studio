@@ -181,6 +181,11 @@
         }
       }
 
+      label {
+        position: absolute;
+        left: -9999px;
+      }
+
       .form-message {
         display: none;
         margin-top: 1rem;
@@ -230,23 +235,36 @@
       <div>
         <p>Contact</p>
         <form>
+          <label for="email">Email</label>
           <input
             type="email"
             id="email"
             name="email"
             placeholder="Email"
             required
+            aria-required="true"
+            aria-label="Email address"
             autocomplete="email"
           />
+          <label for="message">Message</label>
           <textarea
             id="message"
             name="message"
             placeholder="Message"
             required
+            aria-required="true"
+            aria-label="Message"
             autocomplete="off"
           ></textarea>
-          <button type="submit">Send</button>
-          <div id="form-message" class="form-message"></div>
+          <button type="submit" aria-label="Send message">Send</button>
+          <div
+            id="form-message"
+            class="form-message"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            aria-relevant="text"
+          ></div>
         </form>
       </div>
     </main>
@@ -255,6 +273,8 @@
       (function () {
         const form = document.querySelector("form");
         const formMessage = document.getElementById("form-message");
+        const emailInput = document.getElementById("email");
+        const messageInput = document.getElementById("message");
         const submitButton = form.querySelector('button[type="submit"]');
         const WORKER_URL = "https://contact-form.bighill.workers.dev";
 
@@ -262,6 +282,10 @@
           e.preventDefault();
 
           formMessage.classList.remove("show", "success", "error");
+          formMessage.setAttribute("role", "status");
+          formMessage.setAttribute("aria-live", "polite");
+          emailInput.removeAttribute("aria-describedby");
+          messageInput.removeAttribute("aria-describedby");
 
           submitButton.disabled = true;
           const originalText = submitButton.textContent;
@@ -285,16 +309,28 @@
             if (response.ok && data.success) {
               formMessage.textContent = "Message sent successfully!";
               formMessage.classList.add("show", "success");
+              formMessage.setAttribute("role", "status");
+              formMessage.setAttribute("aria-live", "polite");
+              emailInput.removeAttribute("aria-describedby");
+              messageInput.removeAttribute("aria-describedby");
               form.reset();
             } else {
               formMessage.textContent =
                 data.error || "Failed to send message. Please try again.";
               formMessage.classList.add("show", "error");
+              formMessage.setAttribute("role", "alert");
+              formMessage.setAttribute("aria-live", "assertive");
+              emailInput.setAttribute("aria-describedby", "form-message");
+              messageInput.setAttribute("aria-describedby", "form-message");
             }
           } catch (error) {
             formMessage.textContent =
               "Failed to send message. Please check your connection and try again.";
             formMessage.classList.add("show", "error");
+            formMessage.setAttribute("role", "alert");
+            formMessage.setAttribute("aria-live", "assertive");
+            emailInput.setAttribute("aria-describedby", "form-message");
+            messageInput.setAttribute("aria-describedby", "form-message");
           } finally {
             submitButton.disabled = false;
             submitButton.textContent = originalText;
