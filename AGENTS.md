@@ -1,10 +1,6 @@
 # Agents
 
-This document describes the agents, assistants, and automated systems used in the Bighill Studio project.
-
-## Overview
-
-This project uses various agents to assist with development, deployment, and maintenance tasks.
+This document describes the Bighill Studio project to help agents with development, deployment, and maintenance tasks.
 
 ## AI Development Assistant
 
