@@ -36,8 +36,31 @@ This document describes the Bighill Studio project to help agents with developme
 - Always prefer vanilla (native) CSS features and practices over javascript
 - Any feature request that cannot be solved with vanilla CSS/HTML, should use vanilla JS
 
+## Security Best Practices
+
+- **CORS**: Worker restricts CORS to specific allowed origins (no wildcards)
+- **Input Validation**: Validate and sanitize all user inputs
+- **Error Messages**: Never expose internal details (API keys, stack traces, configuration) in error messages
+- **Input Limits**: Truncate message content to prevent abuse (5000 character limit)
+- **Environment Variables**: Store sensitive data (API keys) as Cloudflare secrets, never in code
+
+## Accessibility Guidelines
+
+- Use semantic HTML elements (`main`, `aside`, `form`, proper headings)
+- Include ARIA labels and live regions for dynamic content
+- Associate form labels with inputs using `for` attribute
+- Use data attributes for JavaScript selection instead of IDs where possible (keep IDs only when needed for label associations)
+- Ensure proper heading hierarchy (h1, h2, etc.)
+- Provide ARIA live regions for form feedback (role="status" for success, role="alert" for errors)
+
+## Code Organization
+
+- **HTML**: Use data attributes (`data-*`) for JavaScript selection instead of IDs where possible
+- **IDs**: Only use IDs when required for accessibility (label `for` attributes, ARIA references)
+- **JavaScript**: Prefer `querySelector('[data-*]')` over `getElementById()` when IDs aren't needed for accessibility
+
 ## Documentation
 
-- All markdown documentation (e.g., `README.md`, `AGENTS.md`, `ROADMAP.md`) should always align with the current state of the repository
+- All markdown documentation (e.g., `README.md`, `AGENTS.md`) should always align with the current state of the repository
 - When making changes to the codebase, update relevant documentation to reflect those changes
 - Keep documentation accurate and up-to-date with the actual implementation

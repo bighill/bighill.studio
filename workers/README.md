@@ -137,7 +137,9 @@ curl -X POST https://contact-form.your-subdomain.workers.dev \
 
 ## Security Notes
 
-- The worker validates email format and requires both fields
-- API keys are stored as secrets in Cloudflare (not in code)
-- CORS is configured to allow requests from your domain
-- Consider adding rate limiting or CAPTCHA for production use
+- **CORS**: Restricted to specific allowed origins (bighill.studio, GitHub Pages, localhost:8181). Requests from other origins are blocked.
+- **Input Validation**: Email format is validated, and message content is truncated to 5000 characters to prevent abuse.
+- **Error Handling**: Error messages are generic and don't expose internal details (API errors, configuration issues, etc.).
+- **API Keys**: Stored as secrets in Cloudflare (not in code).
+- **Input Sanitization**: Message content is validated and truncated. JSON.stringify handles escaping when sending to Resend API.
+- Consider adding rate limiting or CAPTCHA for additional protection in production.
