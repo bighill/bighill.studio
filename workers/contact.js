@@ -90,8 +90,8 @@ export default {
           from: env.FROM_EMAIL,
           to: env.TO_EMAIL,
           reply_to: email,
-          subject: `Contact Form: ${email}`,
-          text: `${email}\n\n${message}\n\nSent from https://bighill.studio`,
+          subject: `Bighill Studio Contact Form`,
+          text: `${email}\n\n${message}`,
         }),
       });
 

@@ -126,7 +126,7 @@
         font-size: 1rem;
         font-family: inherit;
         color: var(--color-fg);
-        background: var(--color-glass-bg-light);
+        background-color: var(--color-glass-bg-light);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         transition: all 0.3s;
@@ -147,7 +147,7 @@
       textarea:focus {
         outline: none;
         border-color: rgba(255, 255, 255, 0.4);
-        background: rgba(255, 255, 255, 0.15);
+        background-color: rgba(255, 255, 255, 0.15);
         box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
       }
 
@@ -195,9 +195,9 @@
         }
 
         &.success {
-          background: rgba(76, 175, 80, 0.2);
-          color: #c8e6c9;
-          border-color: rgba(76, 175, 80, 0.4);
+          background: rgba(100, 200, 255, 0.2);
+          color: #b3e5fc;
+          border-color: rgba(100, 200, 255, 0.4);
         }
 
         &.error {
@@ -253,9 +253,7 @@
 
     <script>
       (function () {
-        const form = document.getElementById("contact-form");
-        if (!form) return;
-
+        const form = document.querySelector("form");
         const formMessage = document.getElementById("form-message");
         const submitButton = form.querySelector('button[type="submit"]');
         const WORKER_URL = "https://contact-form.bighill.workers.dev";
