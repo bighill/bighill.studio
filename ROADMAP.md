@@ -1,6 +1,9 @@
 # Roadmap
 
-- [ ] Design
+- [x] Design
+  - [x] Multiple theme variations (minimal, modern, elegant, typography, glass, monochrome)
+  - [x] Theme switcher with URL hash persistence
+  - [x] System preference support (light/dark mode)
 - [x] Contact form handler
   - [x] cloudflare worker
   - [x] resend email service

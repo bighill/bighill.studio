@@ -22,22 +22,27 @@ This project uses various agents to assist with development, deployment, and mai
 
 ## Project Structure
 
-- This is a minimal static site with a single HTML file
+- This is a minimal static site with a single HTML file (`index.html`)
 - CSS is embedded inline within `index.html`
 - No build process or external dependencies required for the main site
 - Assets (like `hash-favicon.png`) are referenced from the root
 - All file paths must be relative (e.g., `./hash-favicon.png`). Absolute file paths can break in GitHub Pages.
+- The site includes a footer with theme switcher buttons
+- Theme selection is persisted via URL hash (e.g., `index.html#modern`)
 - The `workers/` directory contains a Cloudflare Worker for handling contact form submissions (see `workers/README.md` for details)
+- Legacy theme files (`index-*.html`) exist but are not the primary implementation
 
 ## Styling Conventions
 
 - Use CSS custom properties (variables) defined in `:root` for colors
-- Current color scheme:
-  - `--color-bg`: Background color (currently `black`)
-  - `--color-fg`: Foreground/text color (currently `darkkhaki`)
+- The site supports multiple themes via `data-theme` attribute on the `<html>` element
+- Themes are scoped using CSS attribute selectors: `[data-theme="theme-name"]`
+- Each theme defines its own color variables (e.g., `--color-bg`, `--color-fg`, `--color-accent`)
+- Themes automatically adapt to system light/dark mode preference via `@media (prefers-color-scheme: dark)`
+- Available themes: minimal (default), modern, elegant, typography, glass, monochrome
 - Keep styles inline within the `<style>` tag in `index.html`
 - Always prefer vanilla (native) CSS features and practices over javascript
-- Any feature request that cannot be solved with vanilla CSS/HTML, should vanilla JS
+- Any feature request that cannot be solved with vanilla CSS/HTML, should use vanilla JS
 
 ## Documentation
 
