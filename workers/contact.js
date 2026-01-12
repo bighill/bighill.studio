@@ -3,16 +3,49 @@
  * Sends emails via Resend API
  */
 
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  "https://bighill.studio",
+  "https://bighill.github.io",
+  "http://localhost:8181",
+];
+
+/**
+ * Gets the allowed origin from the request, or null if not allowed
+ * @param {Request} request - The incoming request
+ * @returns {string|null} - The origin if allowed, null otherwise
+ */
+function getAllowedOrigin(request) {
+  const origin = request.headers.get("Origin");
+  if (!origin) {
+    return null;
+  }
+
+  // Check exact matches first
+  if (ALLOWED_ORIGINS.includes(origin)) {
+    return origin;
+  }
+
+  // For GitHub Pages, check if origin starts with the base URL
+  if (origin.startsWith("https://bighill.github.io")) {
+    return origin;
+  }
+
+  return null;
+}
+
 export default {
   async fetch(request, env) {
+    const allowedOrigin = getAllowedOrigin(request) || "";
+
     // Handle CORS preflight requests
     if (request.method === "OPTIONS") {
       return new Response(null, {
         status: 204,
         headers: {
-          "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "POST, OPTIONS",
           "Access-Control-Allow-Headers": "Content-Type",
+          "Access-Control-Allow-Origin": allowedOrigin,
         },
       });
     }
@@ -22,8 +55,8 @@ export default {
       return new Response("Method not allowed", {
         status: 405,
         headers: {
-          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": allowedOrigin,
         },
       });
     }
@@ -40,8 +73,8 @@ export default {
           {
             status: 400,
             headers: {
-              "Access-Control-Allow-Origin": "*",
               "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": allowedOrigin,
             },
           }
         );
@@ -55,8 +88,8 @@ export default {
           {
             status: 400,
             headers: {
-              "Access-Control-Allow-Origin": "*",
               "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": allowedOrigin,
             },
           }
         );
@@ -72,8 +105,8 @@ export default {
           {
             status: 500,
             headers: {
-              "Access-Control-Allow-Origin": "*",
               "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": allowedOrigin,
             },
           }
         );
@@ -112,8 +145,8 @@ export default {
           {
             status: 500,
             headers: {
-              "Access-Control-Allow-Origin": "*",
               "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": allowedOrigin,
             },
           }
         );
@@ -125,8 +158,8 @@ export default {
         {
           status: 200,
           headers: {
-            "Access-Control-Allow-Origin": "*",
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": allowedOrigin,
           },
         }
       );
@@ -134,8 +167,8 @@ export default {
       return new Response(JSON.stringify({ error: "Internal server error" }), {
         status: 500,
         headers: {
-          "Access-Control-Allow-Origin": "*",
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": allowedOrigin,
         },
       });
     }
