@@ -28,7 +28,7 @@ This project uses various agents to assist with development, deployment, and mai
 - Assets (like `hash-favicon.png`) are referenced from the root
 - All file paths must be relative (e.g., `./hash-favicon.png`). Absolute file paths can break in GitHub Pages.
 - The site includes a footer with theme switcher buttons
-- Theme selection is persisted via URL hash (e.g., `index.html#modern`)
+- Theme selection is persisted via URL hash (e.g., `index.html#elegant`)
 - The `workers/` directory contains a Cloudflare Worker for handling contact form submissions (see `workers/README.md` for details)
 - Legacy theme files (`index-*.html`) exist but are not the primary implementation
 
@@ -39,7 +39,7 @@ This project uses various agents to assist with development, deployment, and mai
 - Themes are scoped using CSS attribute selectors: `[data-theme="theme-name"]`
 - Each theme defines its own color variables (e.g., `--color-bg`, `--color-fg`, `--color-accent`)
 - Themes automatically adapt to system light/dark mode preference via `@media (prefers-color-scheme: dark)`
-- Available themes: minimal (default), modern, elegant, typography, glass, monochrome
+- Available themes: elegant (default), typography, glass, monochrome
 - Keep styles inline within the `<style>` tag in `index.html`
 - Always prefer vanilla (native) CSS features and practices over javascript
 - Any feature request that cannot be solved with vanilla CSS/HTML, should use vanilla JS

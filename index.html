@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US" data-theme="minimal">
+<html lang="en-US" data-theme="elegant">
   <head>
     <title>Bighill Studio</title>
     <meta charset="utf-8" />
@@ -38,27 +38,6 @@
       .theme-button.active {
         background: var(--color-fg);
         color: var(--color-bg);
-      }
-
-      /* Minimal theme */
-      [data-theme="minimal"] .theme-button {
-        border: 1px solid var(--color-fg);
-      }
-      [data-theme="minimal"] .theme-button.active {
-        background: var(--color-fg);
-        color: var(--color-bg);
-      }
-
-      /* Modern theme */
-      [data-theme="modern"] .theme-button {
-        background: var(--color-card);
-        border: 1px solid var(--color-border);
-        box-shadow: 0 2px 4px var(--color-shadow);
-      }
-      [data-theme="modern"] .theme-button.active {
-        background: var(--color-accent);
-        color: white;
-        border-color: var(--color-accent);
       }
 
       /* Elegant theme */
@@ -115,214 +94,6 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-      }
-
-      /* ===== MINIMAL THEME ===== */
-      [data-theme="minimal"] {
-        --color-bg: darkkhaki;
-        --color-fg: black;
-      }
-      @media (prefers-color-scheme: dark) {
-        [data-theme="minimal"] {
-          --color-bg: black;
-          --color-fg: darkkhaki;
-        }
-      }
-      [data-theme="minimal"] html,
-      [data-theme="minimal"] body {
-        background: var(--color-bg);
-        color: var(--color-fg);
-        font-family: sans-serif;
-      }
-      [data-theme="minimal"] main {
-        margin: 1rem;
-      }
-      [data-theme="minimal"] li {
-        margin-left: 1rem;
-      }
-      [data-theme="minimal"] input,
-      [data-theme="minimal"] textarea {
-        background: var(--color-bg);
-        color: var(--color-fg);
-        border: 1px solid var(--color-fg);
-        padding: 0.5rem;
-        font-family: inherit;
-      }
-      [data-theme="minimal"] button {
-        background: var(--color-fg);
-        color: var(--color-bg);
-        border: 1px solid var(--color-fg);
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        font-family: inherit;
-      }
-      [data-theme="minimal"] button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-      [data-theme="minimal"] .form-message.success {
-        background: rgba(76, 175, 80, 0.2);
-        color: #4caf50;
-      }
-      [data-theme="minimal"] .form-message.error {
-        background: rgba(244, 67, 54, 0.2);
-        color: #f44336;
-      }
-      @media (prefers-color-scheme: dark) {
-        [data-theme="minimal"] .form-message.success {
-          background: rgba(76, 175, 80, 0.3);
-          color: #81c784;
-        }
-        [data-theme="minimal"] .form-message.error {
-          background: rgba(244, 67, 54, 0.3);
-          color: #e57373;
-        }
-      }
-
-      /* ===== MODERN THEME ===== */
-      [data-theme="modern"] {
-        --color-bg: #f5f5f5;
-        --color-fg: #2c3e50;
-        --color-card: #ffffff;
-        --color-accent: #3498db;
-        --color-border: #e0e0e0;
-        --color-shadow: rgba(0, 0, 0, 0.1);
-      }
-      @media (prefers-color-scheme: dark) {
-        [data-theme="modern"] {
-          --color-bg: #1a1a1a;
-          --color-fg: #e8e8e8;
-          --color-card: #2d2d2d;
-          --color-accent: #5dade2;
-          --color-border: #404040;
-          --color-shadow: rgba(0, 0, 0, 0.5);
-        }
-      }
-      [data-theme="modern"] html,
-      [data-theme="modern"] body {
-        background: var(--color-bg);
-        color: var(--color-fg);
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        line-height: 1.6;
-      }
-      [data-theme="modern"] main {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 2rem;
-        background: var(--color-card);
-        border-radius: 12px;
-        box-shadow: 0 4px 6px var(--color-shadow), 0 1px 3px var(--color-shadow);
-      }
-      [data-theme="modern"] h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        color: var(--color-fg);
-        font-weight: 700;
-      }
-      [data-theme="modern"] p {
-        margin-bottom: 1rem;
-        color: #555;
-      }
-      @media (prefers-color-scheme: dark) {
-        [data-theme="modern"] p {
-          color: #d0d0d0;
-        }
-      }
-      [data-theme="modern"] ul {
-        margin: 1.5rem 0;
-        padding-left: 0;
-        list-style: none;
-      }
-      [data-theme="modern"] li {
-        margin: 0.75rem 0;
-        padding-left: 1.5rem;
-        position: relative;
-      }
-      [data-theme="modern"] li::before {
-        content: "→";
-        position: absolute;
-        left: 0;
-        color: var(--color-accent);
-      }
-      [data-theme="modern"] #contact-form {
-        margin-top: 2rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--color-border);
-      }
-      [data-theme="modern"] .form-group {
-        margin-bottom: 1.5rem;
-      }
-      [data-theme="modern"] input,
-      [data-theme="modern"] textarea {
-        width: 100%;
-        padding: 0.75rem;
-        border: 1px solid var(--color-border);
-        border-radius: 6px;
-        font-family: inherit;
-        font-size: 1rem;
-        background: var(--color-card);
-        color: var(--color-fg);
-        transition: border-color 0.2s, box-shadow 0.2s;
-      }
-      [data-theme="modern"] input:focus,
-      [data-theme="modern"] textarea:focus {
-        outline: none;
-        border-color: var(--color-accent);
-        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
-      }
-      [data-theme="modern"] textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
-      [data-theme="modern"] button {
-        padding: 0.75rem 2rem;
-        background: var(--color-accent);
-        color: white;
-        border: none;
-        border-radius: 6px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.2s, transform 0.1s;
-      }
-      [data-theme="modern"] button:hover:not(:disabled) {
-        background: #2980b9;
-        transform: translateY(-1px);
-      }
-      [data-theme="modern"] button:active:not(:disabled) {
-        transform: translateY(0);
-      }
-      [data-theme="modern"] button:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-      }
-      [data-theme="modern"] .form-message {
-        margin-top: 1rem;
-        padding: 0.75rem;
-        border-radius: 6px;
-      }
-      [data-theme="modern"] .form-message.success {
-        background: #d4edda;
-        color: #155724;
-        border: 1px solid #c3e6cb;
-      }
-      [data-theme="modern"] .form-message.error {
-        background: #f8d7da;
-        color: #721c24;
-        border: 1px solid #f5c6cb;
-      }
-      @media (prefers-color-scheme: dark) {
-        [data-theme="modern"] .form-message.success {
-          background: rgba(76, 175, 80, 0.2);
-          color: #81c784;
-          border-color: rgba(76, 175, 80, 0.4);
-        }
-        [data-theme="modern"] .form-message.error {
-          background: rgba(244, 67, 54, 0.2);
-          color: #e57373;
-          border-color: rgba(244, 67, 54, 0.4);
-        }
       }
 
       /* ===== ELEGANT THEME ===== */
@@ -1077,8 +848,6 @@
 
     <footer>
       <div class="theme-buttons">
-        <button class="theme-button" data-theme="minimal">Minimal</button>
-        <button class="theme-button" data-theme="modern">Modern</button>
         <button class="theme-button" data-theme="elegant">Elegant</button>
         <button class="theme-button" data-theme="typography">Typography</button>
         <button class="theme-button" data-theme="glass">Glass</button>
@@ -1093,19 +862,12 @@
         const themeButtons = document.querySelectorAll(".theme-button");
 
         // Valid theme names
-        const validThemes = [
-          "minimal",
-          "modern",
-          "elegant",
-          "typography",
-          "glass",
-          "monochrome",
-        ];
+        const validThemes = ["elegant", "typography", "glass", "monochrome"];
 
-        // Get theme from URL hash or default to minimal
+        // Get theme from URL hash or default to elegant
         function getThemeFromHash() {
           const hash = window.location.hash.slice(1); // Remove the #
-          return validThemes.includes(hash) ? hash : "minimal";
+          return validThemes.includes(hash) ? hash : "elegant";
         }
 
         // Set theme based on hash
