@@ -34,6 +34,25 @@ function getAllowedOrigin(request) {
   return null;
 }
 
+/**
+ * Truncates message content to maximum length
+ * @param {string} message - The message content to truncate
+ * @returns {string} - The message, truncated if necessary
+ */
+function truncateMessage(message) {
+  if (typeof message !== "string") {
+    return "";
+  }
+
+  // Truncate to 5000 characters if longer (gracefully, no error)
+  const MAX_LENGTH = 5000;
+  if (message.length > MAX_LENGTH) {
+    return message.substring(0, MAX_LENGTH);
+  }
+
+  return message;
+}
+
 export default {
   async fetch(request, env) {
     const allowedOrigin = getAllowedOrigin(request) || "";
@@ -64,7 +83,7 @@ export default {
     try {
       // Parse request body
       const body = await request.json();
-      const { email, message } = body;
+      let { email, message } = body;
 
       // Validate input
       if (!email || !message) {
@@ -95,6 +114,9 @@ export default {
         );
       }
 
+      // Truncate message if too long (JSON.stringify handles escaping)
+      message = truncateMessage(message);
+
       // Validate environment variables
       if (!env.RESEND_API_KEY || !env.FROM_EMAIL || !env.TO_EMAIL) {
         return new Response(
@@ -113,6 +135,7 @@ export default {
       }
 
       // Send email via Resend
+      // Note: JSON.stringify automatically escapes special characters in the email body
       const resendResponse = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {
