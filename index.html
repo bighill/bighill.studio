@@ -883,10 +883,10 @@
 
     <footer>
       <div class="theme-buttons">
-        <button class="theme-button" data-theme="elegant">Elegant</button>
-        <button class="theme-button" data-theme="typography">Typography</button>
-        <button class="theme-button" data-theme="glass">Glass</button>
-        <button class="theme-button" data-theme="monochrome">Monochrome</button>
+        <button class="theme-button" data-theme-btn="elegant">Elegant</button>
+        <button class="theme-button" data-theme-btn="typography">Typography</button>
+        <button class="theme-button" data-theme-btn="glass">Glass</button>
+        <button class="theme-button" data-theme-btn="monochrome">Monochrome</button>
       </div>
     </footer>
 
@@ -912,7 +912,7 @@
 
           // Update active button
           themeButtons.forEach((btn) => {
-            if (btn.getAttribute("data-theme") === theme) {
+            if (btn.getAttribute("data-theme-btn") === theme) {
               btn.classList.add("active");
             } else {
               btn.classList.remove("active");
@@ -926,7 +926,7 @@
         // Handle theme button clicks
         themeButtons.forEach((button) => {
           button.addEventListener("click", function () {
-            const theme = this.getAttribute("data-theme");
+            const theme = this.getAttribute("data-theme-btn");
             html.setAttribute("data-theme", theme);
             window.location.hash = theme;
             setThemeFromHash();
